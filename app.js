@@ -5,12 +5,17 @@ const userRoutes = require('./routes/userRoutes')
 const taskRoutes = require('./routes/taskRoutes')
 const swaggerUi = require('swagger-ui-express')
 const swaggerJsdocs = require('swagger-jsdoc')
+const cors = require('cors')
 
 dotenv.config()
 connectDB()
 
 
 const app = express()
+
+app.use(cors())
+
+app.use(express.json())
 
 const swaggerOptions = {
     definition: {
@@ -36,11 +41,11 @@ const swaggerOptions = {
         ],
         servers: [
             {
-                url: 'http://localhost:8080/api/v1',
+                url: 'http://localhost:3000/api/v1',
                 description: 'Local Server'
             },
             {
-                url: 'http://your-app.onrender.com/api/v1',
+                url: 'https://task-manager-api-gme2.onrender.com/api/v1',
                 description: 'production server'
             }
         ]
@@ -51,7 +56,6 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsdocs(swaggerOptions)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
-app.use(express.json())
 
 app.use('/api/v1', userRoutes)
 app.use('/api/v1', taskRoutes)
@@ -60,6 +64,6 @@ app.use('/api/v1', taskRoutes)
 const PORT = process.env.PORT || 3000
 
 
-app.listen(8080, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`app is listening on http://localhost:${PORT}`)
 })
