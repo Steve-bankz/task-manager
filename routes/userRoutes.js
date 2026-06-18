@@ -26,7 +26,7 @@ const { createUser, loginUser } = require('../controllers/userController')
  *               - email
  *               - password
  *             properties:
- *               username:
+ *               name:
  *                 type: string
  *                 example: "steve_bankz"
  *               email:
