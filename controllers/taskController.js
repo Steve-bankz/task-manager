@@ -8,7 +8,7 @@ const createTask = async (req, res) => {
       title,
       description,
       dueDate,
-      user: req.user.userId, // from JWT
+      user: req.user.userId, 
     });
 
     await task.save();
@@ -66,7 +66,6 @@ const getTasks = async (req, res) => {
     try {
       const { title, description, completed, dueDate } = req.body;
   
-      // Find and update the task
       const task = await Task.findOneAndUpdate(
         {
           _id: req.params.id,
@@ -79,8 +78,8 @@ const getTasks = async (req, res) => {
           dueDate,
         },
         {
-          new: true, // return the updated document
-          runValidators: true, // ensure schema validation
+          new: true, 
+          runValidators: true, 
         }
       );
   

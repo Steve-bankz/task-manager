@@ -21,7 +21,7 @@ const taskSchema = new mongoose.Schema({
 
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // Link to User model
+    ref: 'User', 
     required: true,
   },
 

@@ -15,12 +15,10 @@ const userSchema = new mongoose.Schema({
     trim: true,
   },
   password: {
-    // this will store the hashed password
     type: String,
     required: true,
   },
   createdAt: {
-    // set to the creation date by default
     type: Date,
     default: Date.now,
   },
